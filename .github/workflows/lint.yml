@@ -21,7 +21,7 @@ jobs:
           ref: ${{ github.base_ref }}
       - name: modified files
         run: |
-          modified_files=$(git diff --name-only --diff-filter=AM origin/${{ github.base_ref }}..origin${{ github.head_ref }} | tr '\n' ' ')
+          modified_files=$(git diff --name-only --diff-filter=AM origin/${{ github.base_ref }}..origin/${{ github.head_ref }} | tr '\n' ' ')
           echo "textlint_flags=$modified_files" >> $GITHUB_ENV
       - uses: tsuyoshicho/action-textlint@v3
         with:
