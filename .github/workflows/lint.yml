@@ -15,10 +15,15 @@ jobs:
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.head_ref }}
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.base_ref }}
       - name: modified files
         run: |
-          modified_files=$(git diff --name-only --diff-filter=AM origin/${{ github.base_ref }..origin${{ github.head_ref }} | tr '\n' ' ')
+          modified_files=$(git diff --name-only --diff-filter=AM origin/${{ github.base_ref }}..origin/${{ github.head_ref }} | tr '\n' ' ')
           echo "textlint_flags=$modified_files" >> $GITHUB_ENV
       - uses: tsuyoshicho/action-textlint@v3
         with:
           fail_on_error: true
+          textlint_flags: ${{ env.textlint_flags }}
