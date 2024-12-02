@@ -26,4 +26,4 @@ jobs:
       - uses: tsuyoshicho/action-textlint@v3
         with:
           fail_on_error: true
-          textlint_flags: "01.md"
+          textlint_flags: ${{ env.textlint_flags }}
