@@ -23,8 +23,7 @@ jobs:
         run: |
           modified_files=$(git diff --name-only --diff-filter=AM origin/${{ github.base_ref }}..origin/${{ github.head_ref }} | tr '\n' ' ')
           echo "textlint_flags=$modified_files" >> $GITHUB_ENV
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
       - uses: tsuyoshicho/action-textlint@v3
         with:
           fail_on_error: true
+          textlint_flags: "01.md"
