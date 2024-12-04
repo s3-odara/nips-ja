@@ -23,7 +23,7 @@ jobs:
       # プルリクエスト作成時のプルリクエスト先baseブランチの最新コミットとプルリクエスト先headブランチの最新コミットを比較
       - name: modified files
         run: |
-          modified_files=$(git diff --name-only --diff-filter=AM --line-prefix=$(pwd)${{ github.repository }}/ ${{ github.event.pull_request.base.sha }}..origin/${{ github.head_ref }} | tr '\n' ' ')
+          modified_files=$(git diff --name-only --diff-filter=AM ${{ github.event.pull_request.base.sha }}..origin/${{ github.head_ref }} | tr '\n' ' ')
           echo "textlint_flags=$modified_files" >> $GITHUB_ENV
       - uses: tsuyoshicho/action-textlint@v3
         with:
