@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "lint": "textlint .",
+    "lint": "textlint ",
     "lint-staged": "lint-staged",
     "prepare": "husky"
   },
@@ -13,5 +13,8 @@
   },
   "lint-staged": {
     "*.md": "textlint"
+  },
+  "dependencies": {
+    "lint": "^0.8.19"
   }
 }
