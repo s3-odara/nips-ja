@@ -11,15 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-        with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.head_ref }}
       # プルリクエスト元リポジトリからプルリクエスト作成時のプルリクエスト先baseブランチの最新コミットを取得
       - uses: actions/checkout@v4
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.base.sha }}
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
       # プルリクエスト作成時のプルリクエスト先baseブランチの最新コミットとプルリクエスト先headブランチの最新コミットを比較
       - name: modified files
         run: |
